@@ -22,6 +22,12 @@ And returns a JSON payload with a single UCI encoded move:
 	"move":"c2c4"
 }
 ```
+If no valid moves are possible, the agent should return a `null` move (however the game engine will detect this and not request a move anyway):
+```
+{
+	"move":null
+}
+```
 
 The parameter `game_id` is a unique UUID for that game, and can be used if your agent requires initialisation or state, however the example agent is stateless (the entire board being described in its fen encoding).
 
