@@ -70,9 +70,9 @@ python game.py --white http://127.0.0.1:5000/move/random --black http://127.0.0.
 ## Deploy to Google Cloud
 
 You can deploy the agent (using one strategy only) to GCP cloud functions.
-``
+```
 cd agent
 gcloud functions deploy chessbotwarsagent --entry-point gcp_function_main --runtime python37 --trigger-http --allow-unauthenticated
-``
+```
 
 You can tweak the function `gcp_function_main` to use a different strategy if needed.
