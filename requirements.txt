@@ -1,0 +1,3 @@
+Flask==1.1.2
+python-chess==1.999
+requests==2.25.0
