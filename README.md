@@ -4,7 +4,7 @@ This is a simple HTTP API for chess playing agents, and a game engine that simul
 
 Agents are small flask apps. They can be run locally, and soon via Google cloud Run or Google cloud functions. The long term vision of this is that elite chess grand master algorithms will exist on the Internet, known only by their URLs, gradually getting smarter.
 
-## Argent API format
+## Agent API format
 
 The game engine will issue a HTTP POST to the endpoint URL with the following JSON payload:
 ```
