@@ -1,8 +1,8 @@
 # Chessbot wars!
 
-This is a simple http API for chess playing agents, and a game engine that simulates a match between two agent APIs.
+This is a simple HTTP API for chess playing agents, and a game engine that simulates a match between two agent APIs.
 
-Agents are small flask apps. They can be run locally, and soon via Google cloud Run or Google cloud functions. The long term vision of this is that elite chess grand master algoriths will exist on the Internet, known only by their URLs, gradually getting smarter.
+Agents are small flask apps. They can be run locally, and soon via Google cloud Run or Google cloud functions. The long term vision of this is that elite chess grand master algorithms will exist on the Internet, known only by their URLs, gradually getting smarter.
 
 ## Argent API format
 
@@ -10,7 +10,7 @@ The game engine will issue a HTTP POST to the endpoint URL with the following JS
 ```
 {
 	"game_id":"7d3a06a1-2e88-4eb3-876e-570b31cb73cd",
-	"fen":"8/ppppppPp/8/8/8/8/8/8 w KQkq - 0 1",
+	"fen":"rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
 	"moves":["a1a2","..."],
 	"turn":"white"
 }
@@ -23,16 +23,19 @@ And returns a JSON payload with a single UCI encoded move:
 }
 ```
 
+The parameter `game_id` is a unique UUID for that game, and can be used if your agent requires initialisation or state, however the example agent is stateless (the entire board being described in its fen encoding).
+
+
 ## Example agent
 
-An example agent is supplied with a random move stratgy. This example uses the `python-chess` module to compute the board positions from the supplied fen string, and randomly selects a valid move.
+An example agent is supplied with a random move strategy. This example uses the `python-chess` module to compute the board positions from the supplied fen string, and randomly selects a valid move.
 
 Once the agent app is running (e.g. on localhost:5000) you can curl it with:
 
 ```
 curl -X POST \
 	 -H 'Content-Type: application/json'\
-	 -d '{"game_id":4,"fen":"8/ppppppPp/8/8/8/8/8/8 w KQkq - 0 1","moves":[],"turn":"white"}'\
+	 -d '{"game_id":"xxx","fen":"rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1","moves":[],"turn":"white"}'\
 	 http://127.0.0.1:5000/move/random
 ```
 
