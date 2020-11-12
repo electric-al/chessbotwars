@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 import chess
 import random
 import os
+import werkzeug.datastructures
 
 app = Flask(__name__)
 
@@ -31,6 +32,10 @@ def index():
 def move():
     return handle_move_request(request, random_move_strategy)
 
-port = int(os.environ.get('PORT', 5000))
+# GCP cloud function entry point
+def gcp_function_main(request):
+    return handle_move_request(request, random_move_strategy)
+
 if __name__ == "__main__":
-   app.run(host='0.0.0.0', port=port)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)

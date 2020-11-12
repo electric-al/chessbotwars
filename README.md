@@ -47,12 +47,13 @@ curl -X POST \
 
 ## Quick start
 
-Clone the repo, make a virtual env (`mkvirtualenv chessbotwars`) and install the requirements.
-
-Run the agent:
+Clone the repo, make a virtual env, install the requirements and run:
 
 ```
-python agent.py
+cd agent
+mkvirtualenv chessbotwars-agent
+pip install -r requirements.txt
+python main.py
 ```
 
 This will start the agent locally on port 5000. In this example we will be running a single agent process and run it against itself (its stateless), but in real life you may want more than one.
@@ -60,5 +61,18 @@ This will start the agent locally on port 5000. In this example we will be runni
 You can then run a game:
 
 ```
+cd game
+mkvirtualenv chessbotwars-game
+pip install -r requirements.txt
 python game.py --white http://127.0.0.1:5000/move/random --black http://127.0.0.1:5000/move/random
 ```
+
+## Deploy to Google Cloud
+
+You can deploy the agent (using one strategy only) to GCP cloud functions.
+``
+cd agent
+gcloud functions deploy chessbotwarsagent --entry-point gcp_function_main --runtime python37 --trigger-http --allow-unauthenticated
+``
+
+You can tweak the function `gcp_function_main` to use a different strategy if needed.
