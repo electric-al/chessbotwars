@@ -75,4 +75,4 @@ cd agent
 gcloud functions deploy chessbotwarsagent --entry-point gcp_function_main --runtime python37 --trigger-http --allow-unauthenticated
 ```
 
-You can tweak the function `gcp_function_main` to use a different strategy if needed.
+The function `gcp_function_main` includes logic for flask routing via GCP cloud functions, so you can reach the correct strategy, e.g. `https://<project>.cloudfunctions.net/chessbotwarsagent/move/random`.
