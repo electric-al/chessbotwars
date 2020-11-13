@@ -69,7 +69,7 @@ while True:
         break;
 
     turn = 'black'
-    move_uci = process_move(turn, board, white_agent_url)
+    move_uci = process_move(turn, board, black_agent_url)
     moves.append(move_uci)
     print_move(turn, board, move_uci)
 
